@@ -19,10 +19,25 @@
         </xs:complexType>
     </xs:element>
 
+    <xs:element name="GetPokemonIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="GetPokemonIdResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name = "id" type = "xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
     <xs:complexType name="ItemType">
         <xs:sequence>
             <xs:element name="item" type="tns:ItemDetailsType"/>
-            <xs:element name="versionDetails" type="tns:VersionDetailsType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="version_details" type="tns:VersionDetailsType" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
 
@@ -53,7 +68,7 @@
     <xs:complexType name="AbilityType">
         <xs:sequence>
             <xs:element name="ability" type="tns:AbilityDetailsType"/>
-            <xs:element name="isHidden" type="xs:boolean"/>
+            <xs:element name="is_hidden" type="xs:boolean"/>
             <xs:element name="slot" type="xs:int"/>
         </xs:sequence>
     </xs:complexType>
@@ -70,9 +85,9 @@
             <xs:element name="id" type="xs:int"/>
             <xs:element name="name" type="xs:string"/>
             <xs:element name="abilities" type="tns:AbilityType" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element name="baseExperience" type="xs:int"/>
-            <xs:element name="heldItems" type="tns:ItemType" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element name="locationAreaEncounters" type="xs:string"/>
+            <xs:element name="base_experience" type="xs:int"/>
+            <xs:element name="held_items" type="tns:ItemType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="location_area_encounters" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
 
