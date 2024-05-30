@@ -1,2 +1,13 @@
-# challengeMAY
- DEMO FINAL
+# ,------.       ,--.            ,---.  ,------. ,--.  ,---.   ,-----.   ,---.  ,------.    ,---.                   ,-.,----.
+|  .--. ',---. |  |,-. ,---.  /  O  \ |  .--. '|  | '   .-' '  .-.  ' /  O  \ |  .--. '  /  O  \  ,---.  ,---.   /  /'.-.  |
+|  '--' | .-. ||     /| .-. :|  .-.  ||  '--' ||  | `.  `-. |  | |  ||  .-.  ||  '--' | |  .-.  || .-. || .-. | /  /   .' <
+|  | --'' '-' '|  \  \\   --.|  | |  ||  | --' |  | .-'    |'  '-'  '|  | |  ||  | --'  |  | |  || '-' '| '-' ' \  \ /'-'  |
+`--'     `---' `--'`--'`----'`--' `--'`--'     `--' `-----'  `-----' `--' `--'`--'      `--' `--'|  |-' |  |-'   \  \`----'
+                                                                                                 `--'   `--'      `-'
+
+                                                                                                by andrea :D
+
+Run mvn clean install for auto generated classes to create themselves :)
+Enviroment variables needed, make sure to set them up before running it or you will encounter errors.
+
+
