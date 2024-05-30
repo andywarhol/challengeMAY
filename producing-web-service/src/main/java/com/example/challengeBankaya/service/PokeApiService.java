@@ -1,22 +1,24 @@
 package com.example.challengeBankaya.service;
 
-import com.example.demosoap.GetPokemonIdResponse;
-import com.example.demosoap.GetPokemonResponse;
-import com.example.demosoap.PokemonEntity;
+import com.example.demosoap.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.time.ZonedDateTime;
+
 
 @Service
 public class PokeApiService {
 
     private final RestTemplate restTemplate = new RestTemplate();
+    private final DbService dbService;
 
-
-
+    public PokeApiService(DbService dbService) {
+        this.dbService = dbService;
+    }
 
     public GetPokemonResponse getPokemonByName() {
        return getPokemonByName();
@@ -31,6 +33,7 @@ public class PokeApiService {
         ResponseEntity<PokemonEntity> pokemonResult = restTemplate.getForEntity(apiUrl, PokemonEntity.class);
 
         if (pokemonResult.getStatusCode().toString().equals("200 OK")) {
+            dbService.insertRequest("Test", "METODO GENERAL");
             PokemonEntity pokemonFound = pokemonResult.getBody();
             GetPokemonResponse res = new GetPokemonResponse();
             res.setPokemonEntity(pokemonFound);
@@ -52,25 +55,38 @@ public class PokeApiService {
         if (pokemonResult.getStatusCode().toString().equals("200 OK")) {
 
             PokemonEntity pokemonFound = pokemonResult.getBody();
-            switch (method) {
 
+            String reqMethod = method.toString();
+            dbService.insertRequest("Test", reqMethod);
+
+            switch (method) {
                 case ID:
                     GetPokemonIdResponse idRes = new GetPokemonIdResponse();
                     idRes.setId(pokemonFound.getId());
                     return idRes;
-
                 case ABILITIES:
-                    break;
-
+                    GetPokemonAbilitiesResponse abRes = new GetPokemonAbilitiesResponse();
+                    for (AbilityType abilityType: pokemonFound.getAbilities()){
+                        abRes.getAbilities().add(abilityType);
+                    }
+                    return abRes;
+                case BASE_EXPERIENCE:
+                    GetPokemonExpResponse expRes = new GetPokemonExpResponse();
+                    expRes.setBaseExperience(pokemonFound.getBaseExperience());
+                    return expRes;
+                case HELD_ITEMS:
+                    GetPokemonItemsResponse itemsRes = new GetPokemonItemsResponse();
+                     for (ItemType itemType: pokemonFound.getHeldItems()){
+                         itemsRes.getHeldItems().add(itemType);
+                     }
+                     return itemsRes;
+                case LOCATION_AREA_ENCOUNTERS:
+                    GetPokemonLocationResponse locationRes = new GetPokemonLocationResponse();
+                    locationRes.setLocationAreaEncounters(pokemonFound.getLocationAreaEncounters());
+                    return locationRes;
                 default:
                     break;
             }
-
-
-
-
-
-
         }
 
         return new GetPokemonResponse();
